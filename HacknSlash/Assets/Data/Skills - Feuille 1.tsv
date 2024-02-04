@@ -1,0 +1,5 @@
+ID	NOM	TYPE	NIV_MAX	DEGATS	MANA_COST	TEMPS_DE_CAST	ICON
+1	Boule de feu	Spell	10	5	10	0,5	Mindflayer
+2	Tornado	Spell	10	20	30	2	Mindflayer
+3	dddd	Spell	10	12	5	0,3	Mindflayer
+4	aaaa	Spell	10	4	8	1	Mindflayer
