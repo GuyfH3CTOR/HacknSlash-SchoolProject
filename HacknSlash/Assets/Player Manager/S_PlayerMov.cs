@@ -11,7 +11,7 @@ public class S_PlayerMov : MonoBehaviour
         rb_Rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         rb_Rigidbody.MovePosition(transform.position + new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * Time.deltaTime * f_MovSpeed);
     }
