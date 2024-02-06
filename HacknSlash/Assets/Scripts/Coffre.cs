@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class Coffre : Interactable_Obj
 {
+    [Header("Object Settings :")]
+
     public GameObject g_Mesh;
     public Item item;
+
+    [Header("Open Animation :")]
+    public AudioSource as_ChestOpen;
+    public Animation a_ChestAnimation;
+    public ParticleSystem ps_ChestParticule;
+
 
     public override void Interaction()
     {
@@ -18,6 +26,8 @@ public class Coffre : Interactable_Obj
     public override void InteractEffect()
     {
         base.InteractEffect();
-        g_Mesh.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+        as_ChestOpen.Play(0);
+        a_ChestAnimation.Play("New Animation");
+        ps_ChestParticule.Play();
     }
 }
