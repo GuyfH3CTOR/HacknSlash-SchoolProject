@@ -30,7 +30,7 @@ public class S_ForwadBullet : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<EnemyManager>())
         {
-            Debug.Log(collision.gameObject.GetComponent<EnemyManager>());
+            // Debug.Log(collision.gameObject.GetComponent<EnemyManager>());
             collision.gameObject.GetComponent<EnemyManager>().GettingHit(f_damage);
             
             Instantiate(ProjectileParticule, transform.position, transform.rotation);
