@@ -19,6 +19,7 @@ public class Spell_Manager : Skills_Manager
         CastTime = float.Parse(spell[6]);
         LoadIcon(spell[7]);
     }
+    
     void Update()
     {
         if(Input.GetKey(KeyCode.Keypad0))
