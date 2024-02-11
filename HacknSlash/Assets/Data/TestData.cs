@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestData : MonoBehaviour
 {
-    public List<Spell_Manager> l_spells = new List<Spell_Manager>();
+    public List<Spell> l_spells = new List<Spell>();
 
     void Start()
     {
@@ -13,13 +13,13 @@ public class TestData : MonoBehaviour
 
     void Getdata()
     {
-        string[] datas = LoadData.ReadString();
+        string[] datas = LoadSpellData.ReadString();
 
         for(int id=1 ; id<datas.Length; id++)
         {
             // Debug.Log("ID : " + id + ", Value : " + datas[id]);
 
-            Spell_Manager spell = LoadData.CreateSpellData(datas[id]);
+            Spell spell = LoadSpellData.CreateSpellData(datas[id]);
             l_spells.Add(spell);
         }
     }

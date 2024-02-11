@@ -2,6 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spell_Attack : Skills_Manager
+public class Spell_Attack : Spell_Instance
 {
 }
