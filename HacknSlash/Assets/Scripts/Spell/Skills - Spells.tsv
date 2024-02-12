@@ -1,4 +1,4 @@
 ID	Name	Icon	GameObject	Cast Type	Mana Cost	Damage	Load Time	Reload Time	Speed	Zone Size
-1	Fire Bolt	Mindflayer	Spell/FireBolt	Simple Cast	10	5	0,1	2	1	0
+1	Fire Bolt	Mindflayer	Spell/FireBolt	Simple Cast	10	5	0	0,5	1	0
 2	Chained Lighting	Mindflayer	Spell/ChainedLighting	Charging Cast	8	4	1	5	1	0
-3	Meteor	Mindflayer	Spell/Meteor	Zone Cast	5	12	0,1	15	1	5
+3	Meteor	Mindflayer	Spell/Meteor	Zone Cast	5	12	0	15	1	5

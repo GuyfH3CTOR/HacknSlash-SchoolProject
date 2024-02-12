@@ -57,7 +57,6 @@ public class UI_SpellManager : MonoBehaviour
         {
             spellSlot[i].GetComponent<Image>().sprite = spellsList[i].icon; // Get ALl spells icon
             spellSlot[i].GetComponent<SpellReload>().SetSliderValue(spellsList[i].ReloadTime); // Set ReloadTime of Spell
-            Debug.Log(spellsList[i].ReloadTime);
         }
         UpdateSpellsSlot();
     }
@@ -168,7 +167,7 @@ public class UI_SpellManager : MonoBehaviour
         {
             RaycastHit hitData;
 
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitData, 1000))
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitData, 1000, LayerMask.NameToLayer("Ground")))
             {
                 Instantiate(_gameobject, hitData.point, new Quaternion(), GameObject.Find("Instances").transform);
             }
