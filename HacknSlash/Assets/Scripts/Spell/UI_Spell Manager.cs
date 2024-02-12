@@ -56,7 +56,8 @@ public class UI_SpellManager : MonoBehaviour
         for (int i=0; i < spellSlot.Length; i++)
         {
             spellSlot[i].GetComponent<Image>().sprite = spellsList[i].icon; // Get ALl spells icon
-            spellSlot[i].GetComponent<SpellReload>().SetSliderValue(spellsList[i].loadTime); // Set ReloadTime of Spell
+            spellSlot[i].GetComponent<SpellReload>().SetSliderValue(spellsList[i].ReloadTime); // Set ReloadTime of Spell
+            Debug.Log(spellsList[i].ReloadTime);
         }
         UpdateSpellsSlot();
     }
