@@ -7,7 +7,13 @@ using UnityEngine.UI;
 
 public class UI_SpellManager : MonoBehaviour
 {
-    [Header("Variable")]
+    [Header("========== Spell ==========")]
+
+    [Header("#### References ####")]
+    public GameObject g_LoadSlider;
+    public GameObject g_playerValues;
+
+    [Header("#### Variable ####")]
     public GameObject g_PlayerArm;
     public Vector2 iconIncreasedSize = new Vector2(200,200);
     private Vector2 iconNormalSize;
@@ -15,11 +21,11 @@ public class UI_SpellManager : MonoBehaviour
     private int SelectedSpellNumber = 1;
     private float scrollScale = 0.1f;
 
-    [Header("Spell Slot")]
+    [Header("#### Spell Slot ####")]
     public GameObject[] spellSlot;
     public List<Spell> spellsList = new List<Spell>();
 
-    [Header("Selected Spell Varaibles")]
+    [Header("#### Selected Spell Varaibles ####")]
     private GameObject _gameobject;
     private string _castType;
     private int _manaCost;
@@ -29,10 +35,12 @@ public class UI_SpellManager : MonoBehaviour
     private float _speed;
     private float _zoneSize;
 
-    [Header("Load Slider")]
-    public GameObject LoadSlider;
+    [Header("#### Slider Variables ####")]
     private float Load;
     private bool isLoading;
+    
+    [Header("#### Player Values Variables ####")]
+    private Player_Values player_Values;
 
     void Start()
     {
@@ -41,6 +49,7 @@ public class UI_SpellManager : MonoBehaviour
 
     void Initialization()
     {
+        player_Values = g_playerValues.GetComponent<Player_Values>(); // Get Player Values Component
         iconNormalSize = spellSlot[2].GetComponent<RectTransform>().sizeDelta; // Get size of 2nd skill icon
 
         // ##### Get Spells Data #####
@@ -58,6 +67,7 @@ public class UI_SpellManager : MonoBehaviour
             spellSlot[i].GetComponent<Image>().sprite = spellsList[i].icon; // Get ALl spells icon
             spellSlot[i].GetComponent<SpellReload>().SetSliderValue(spellsList[i].ReloadTime); // Set ReloadTime of Spell
         }
+
         UpdateSpellsSlot();
     }
 
@@ -94,11 +104,11 @@ public class UI_SpellManager : MonoBehaviour
             UpdateSpellsSlot();
         }
         
-        if(Input.GetKeyDown(KeyCode.Mouse0) && spellSlot[SelectedSpellNumber - 1].GetComponent<SpellReload>().isLoaded)
+        if(Input.GetKeyDown(KeyCode.Mouse0) && spellSlot[SelectedSpellNumber - 1].GetComponent<SpellReload>().isLoaded && player_Values.currentMana > _manaCost)
         {
             StartSpellCast();
         }
-        if(Input.GetKeyUp(KeyCode.Mouse0) && spellSlot[SelectedSpellNumber - 1].GetComponent<SpellReload>().isLoaded)
+        if(Input.GetKeyUp(KeyCode.Mouse0) && spellSlot[SelectedSpellNumber - 1].GetComponent<SpellReload>().isLoaded && player_Values.currentMana > _manaCost)
         {
             SpellCast();
         }
@@ -112,26 +122,26 @@ public class UI_SpellManager : MonoBehaviour
         }
 
         spellSlot[SelectedSpellNumber - 1].GetComponent<RectTransform>().sizeDelta = iconIncreasedSize; // Increase size of selected skill icon
-    }
-
-    void StartSpellCast()
-    {
-        _gameobject = spellsList[SelectedSpellNumber - 1].gameobject;
-        _castType = spellsList[SelectedSpellNumber - 1].castType;
         _manaCost = spellsList[SelectedSpellNumber - 1].manaCost;
+
+        _castType = spellsList[SelectedSpellNumber - 1].castType;
         _damage = spellsList[SelectedSpellNumber - 1].damage;
         _loadTime = spellsList[SelectedSpellNumber - 1].loadTime;
         _ReloadTime = spellsList[SelectedSpellNumber - 1].ReloadTime;
         _speed = spellsList[SelectedSpellNumber - 1].speed;
         _zoneSize = spellsList[SelectedSpellNumber - 1].zoneSize;
+    }
 
-        LoadSlider.GetComponent<Slider>().maxValue = _loadTime;
+    void StartSpellCast()
+    {
+        _gameobject = spellsList[SelectedSpellNumber - 1].gameobject;
+        g_LoadSlider.GetComponent<Slider>().maxValue = _loadTime;
 
         switch(_castType)
         {
             case "Simple Cast":
                 // Debug.Log("Simple Cast");
-                LoadSlider.GetComponent<Slider>().maxValue = 0.05f;
+                g_LoadSlider.GetComponent<Slider>().maxValue = 0.05f;
                 isLoading = true;
                 break;
             case "Charging Cast":
@@ -140,16 +150,18 @@ public class UI_SpellManager : MonoBehaviour
                 break;
             case "Zone Cast":
                 // Debug.Log("Zone Cast");
-                LoadSlider.GetComponent<Slider>().maxValue = 0.05f;
+                g_LoadSlider.GetComponent<Slider>().maxValue = 0.05f;
                 isLoading = true;
                 break;
         }
+
+        player_Values.UpdateManaValue(-_manaCost);
     }
 
     void LoadCast()
     {
         Load += Time.deltaTime;
-        LoadSlider.GetComponent<Slider>().value = Load;
+        g_LoadSlider.GetComponent<Slider>().value = Load;
         if(Load >= _loadTime)
         {
             isLoading = false;
@@ -160,7 +172,7 @@ public class UI_SpellManager : MonoBehaviour
     {
         isLoading = false;
         Load = 0;
-        LoadSlider.GetComponent<Slider>().value = Load;
+        g_LoadSlider.GetComponent<Slider>().value = Load;
         spellSlot[SelectedSpellNumber - 1].GetComponent<SpellReload>().ResetLoading();
 
         if(_castType == "Zone Cast") // cast zone

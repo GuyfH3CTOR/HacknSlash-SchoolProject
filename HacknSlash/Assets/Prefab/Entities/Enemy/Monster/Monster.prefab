@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b2258d894c44049954e94f44705ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseLife: 20
+  Slider: {fileID: 9189819116869422590}
   f_MovSpeed: 3
   MinDist: 3
   MaxDist: 10
@@ -312,5 +314,10 @@ PrefabInstance:
 --- !u!4 &3213719764537036880 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1981790813913769033, guid: 6af595c4761149540a8ee7abd36c015e, type: 3}
+  m_PrefabInstance: {fileID: 3970434514195821593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9189819116869422590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5228990241348467175, guid: 6af595c4761149540a8ee7abd36c015e, type: 3}
   m_PrefabInstance: {fileID: 3970434514195821593}
   m_PrefabAsset: {fileID: 0}

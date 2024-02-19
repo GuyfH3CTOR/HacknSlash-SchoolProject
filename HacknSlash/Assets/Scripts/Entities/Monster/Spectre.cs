@@ -18,18 +18,19 @@ public class Spectre : EnemyManager
     void Start()
     {
         Initialization();
+        EnemyInitialization();
         PhaseManager();
     }
 
-    public override void Initialization()
+    public override void EnemyInitialization()
     {
-        base.Initialization();
+        base.EnemyInitialization();
         m_Collider = GetComponent<Collider>();
     }
 
     void Update()
     {
-        FollowPlayer();
+        EnemyUpdate();
     }
 
     private void PhaseManager()
