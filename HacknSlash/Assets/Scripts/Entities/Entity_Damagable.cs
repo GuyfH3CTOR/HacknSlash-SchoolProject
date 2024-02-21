@@ -8,9 +8,10 @@ public class Entity_Damagable : MonoBehaviour
 {    
     [Header("========== Damagable ==========")]
 
-    [Header("#### Settings ####")]
+    [Header("#### Variables ####")]
     // public
     public float baseLife = 100;
+    public float xpDrop;
     // private
     private float currentLife;
     private float maxLife;
@@ -52,6 +53,7 @@ public class Entity_Damagable : MonoBehaviour
         // Debug.Log(currentLife);
         if(currentLife <= 0)
         {
+            GameObject.Find("Bottom UI").GetComponent<Player_Values>().UpdateXP(xpDrop);
             Destroy(gameObject);
         }
     }

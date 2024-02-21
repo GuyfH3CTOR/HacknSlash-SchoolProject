@@ -6,11 +6,15 @@ using UnityEngine;
 [Serializable]
 public class Item
 {    
-    [SerializeReference] protected int ID;
-    [SerializeReference] protected string Name;
+    [SerializeReference] public int ID;
+    [SerializeReference] public string Name;
+    [SerializeReference] public Sprite Icon;
+    [SerializeReference] public string Description = new string("empty");
 
-    public Item(int id,string name)
-    {
+    public Item(){
+        // Empty Item
+    }
+    public Item(int id,string name){
         ID = id;
         Name = name;
     }

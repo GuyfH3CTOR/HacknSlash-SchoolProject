@@ -17,10 +17,15 @@ public class Coffre : Interactable_Obj
 
     public override void Interaction()
     {
-        base.Interaction();
+        // Get player
         GameObject player = GameObject.Find("Player");
-        Inventory inventory = player.GetComponent<Inventory>();
-        inventory.AddItem(new Item(1 ,"chest item"));
+
+        // Check if there is enough space in player inventory
+        if(player.GetComponentInChildren<Inventory>().inv.Count < player.GetComponentInChildren<Inventory>().numberOfSlot){
+            base.Interaction();
+            Inventory inventory = player.GetComponentInChildren<Inventory>();
+            inventory.AddItem(item);
+        }
     }
 
     public override void InteractEffect()

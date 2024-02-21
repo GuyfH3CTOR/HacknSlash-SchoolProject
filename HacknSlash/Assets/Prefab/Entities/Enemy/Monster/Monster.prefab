@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseLife: 20
+  xpDrop: 40
   Slider: {fileID: 9189819116869422590}
   f_MovSpeed: 3
   MinDist: 3

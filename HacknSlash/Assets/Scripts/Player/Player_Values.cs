@@ -7,9 +7,7 @@ using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class Player_Values : MonoBehaviour
-{    
-    public bool miseAJour;
-    
+{        
     [Header("========== Life ==========")]
     [Header("Values")]
     public float maxLife;
@@ -44,6 +42,11 @@ public class Player_Values : MonoBehaviour
 
     [Header("TextMeshPro Components")]
     private TMP_Text levelText;
+    
+    [Header("========== Debug ==========")]
+    public bool miseAJour;
+    public bool AddXP;
+    public float XPtoAdd;
 
     void Start()
     {
@@ -51,12 +54,21 @@ public class Player_Values : MonoBehaviour
     }
     void Update()
     {
+        Debuging();
+        Regeneration();
+    }
+    void Debuging()
+    {
         if(miseAJour)
         {
             Initialization();
             miseAJour = !miseAJour;
         }
-        Regeneration();
+        if(AddXP)
+        {
+            UpdateXP(XPtoAdd);
+            AddXP = !AddXP;
+        }
     }
 
     void Initialization()
@@ -94,17 +106,25 @@ public class Player_Values : MonoBehaviour
     }
     public void UpdateXP(float _UpdateXPValue) {
         currentXP = currentXP + _UpdateXPValue;
+        levelSlider.value = currentXP;
+
         if(currentXP >= nextLevelxp) {
-            float _AdditionalXP = nextLevelxp - (nextLevelxp + currentXP);
+            float _AdditionalXP = currentXP - nextLevelxp;
             UpdateLevel(_AdditionalXP);
         }
     }
     public void UpdateLevel(float _AdditionalXP) {
+         // Add Level
         currentLevel++;
+        // Set Next Level Xp requirement
         nextLevelxp = nextLevelxp + (5 * (nextLevelxp / 100));
-        if(_AdditionalXP != 0) {
-            UpdateXP(_AdditionalXP);
-        }
+        currentXP = 0;
+        // Update Visual + TODO : add particules on player and SLider Animation
+        levelSlider.maxValue = nextLevelxp;
+        levelText.text = currentLevel.ToString();
+        GameObject.Find("Player").GetComponentInChildren<PlayEffect>().Play();
+        // Resend AdditionalXP
+        UpdateXP(_AdditionalXP);
     }
 
     // #### Regeneration ####
