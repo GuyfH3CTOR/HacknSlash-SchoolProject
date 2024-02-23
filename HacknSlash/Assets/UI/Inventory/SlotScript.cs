@@ -9,15 +9,16 @@ public class SlotScript : MonoBehaviour
     [Header("Variables")]
     public Item item;
     [Header("References")]
-    private SpriteRenderer I_icon;
+    public GameObject g_icon;
+    private SpriteRenderer s_icon;
 
     void Start(){
         Initialization();
     }
 
-    void Initialization(){
+    public void Initialization(){
         // Get the Sprite Renderer
-        I_icon = GetComponentInChildren<SpriteRenderer>();
+        s_icon = g_icon.GetComponent<SpriteRenderer>();
     }
 
     public void UpdateSlot(Item _item){
@@ -26,16 +27,20 @@ public class SlotScript : MonoBehaviour
         // Update Slot Icon
         UpdateIcon();
     }
+    public void EmptySlot(){
+        // Debug.Log("s_icon "+s_icon);
+        s_icon.color = new Color(1f,1f,1f,0f);
+    }
 
     void UpdateIcon(){
         // Check if there is an Icon
         if(item.Icon != null) {
-            I_icon.sprite = item.Icon;
+            s_icon.sprite = item.Icon;
             // Opacity 100% (because it is NOT a white sprite)
-            I_icon.color = new Color(1f,1f,1f,1f);
+            s_icon.color = new Color(1f,1f,1f,1f);
         }else{
             // Opacity 0% (because it is a white sprite)
-            I_icon.color = new Color(1f,1f,1f,0f);
+            s_icon.color = new Color(1f,1f,1f,0f);
         }
     }
 }
