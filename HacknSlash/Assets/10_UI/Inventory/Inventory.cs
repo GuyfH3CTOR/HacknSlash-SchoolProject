@@ -62,7 +62,7 @@ public class Inventory : MonoBehaviour
         for(int i = 0; i < slot.Count; i++){
             // Check if Item as ID if not EmptySlot() otherwise UpdateSLot()
             if(inv[i].ID == 0){
-                Debug.Log("null");
+                // Debug.Log("null");
                 // If superior than curent number of item in inv 
                 slot[i].GetComponentInChildren<SlotScript>().EmptySlot();
             }else{

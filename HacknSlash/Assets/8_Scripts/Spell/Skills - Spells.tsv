@@ -1,4 +1,4 @@
 ID	Name	Icon	GameObject	Cast Type	Mana Cost	Damage	Load Time	Reload Time	Speed	Zone Size
-1	Fire Bolt	Skill/Fire Bolt	Spell/FireBolt	Simple Cast	10	5	0	0,5	1	0
-2	Chained Lighting	Skill/Charging Bomb	Spell/ChargingBomb	Charging Cast	8	4	1	5	1	0
-3	Meteor	Skill/Frozen Domain	Spell/FrozenDomain	Zone Cast	5	12	0	15	1	5
+1	Fire Bolt	Skill/FireBoltIcon	Spell/FireBolt	Simple Cast	10	5	0	0,5	1	0
+2	Chained Lighting	Skill/ChargingBombIcon	Spell/ChargingBomb	Charging Cast	8	4	1	5	1	0
+3	Meteor	Skill/FrozenDomainIcon	Spell/FrozenDomain	Zone Cast	5	12	0	15	1	5

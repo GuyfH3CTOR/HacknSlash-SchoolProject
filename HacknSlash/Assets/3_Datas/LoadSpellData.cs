@@ -8,7 +8,7 @@ public class LoadSpellData
 {        
     static public string[] ReadString()
     {
-        string path = "Assets/Scripts/Spell/Skills - Spells.tsv";
+        string path = "Assets/8_Scripts/Spell/Skills - Spells.tsv";
         
         StreamReader reader = new StreamReader(path);
         string text = reader.ReadToEnd();        
