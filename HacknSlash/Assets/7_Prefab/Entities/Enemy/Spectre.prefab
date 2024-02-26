@@ -153,6 +153,7 @@ MonoBehaviour:
   baseLife: 20
   xpDrop: 20
   Slider: {fileID: 5798827977429670694}
+  Body: {fileID: 1789779537490110173}
   f_MovSpeed: 10
   MinDist: 5
   MaxDist: 10

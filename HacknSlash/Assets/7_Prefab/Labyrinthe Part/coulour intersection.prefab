@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 395493682163013948}
   - component: {fileID: 8095905266931266856}
   - component: {fileID: 3435481564243988919}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1851bd948e5a8484682424090638aeb8, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 9029752444533441064}
   - component: {fileID: 2365221985010903069}
   - component: {fileID: 6568663627759779147}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1851bd948e5a8484682424090638aeb8, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 1529232888868017923}
   - component: {fileID: 4673970338267039969}
   - component: {fileID: 1521535467779814237}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1851bd948e5a8484682424090638aeb8, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 6792424337051597023}
   - component: {fileID: 7039115114461685328}
   - component: {fileID: 1755393305375883389}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +789,7 @@ GameObject:
   - component: {fileID: 8646836156048882296}
   - component: {fileID: 2660828162529421809}
   - component: {fileID: 3585779839781915774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,7 +897,7 @@ GameObject:
   - component: {fileID: 6539088518704981304}
   - component: {fileID: 2352875094854608094}
   - component: {fileID: 7144946883138411820}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +948,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1851bd948e5a8484682424090638aeb8, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1141,7 +1141,7 @@ GameObject:
   - component: {fileID: 7024561200683477070}
   - component: {fileID: 8645303855336345086}
   - component: {fileID: 4311622776810607038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1249,7 +1249,7 @@ GameObject:
   - component: {fileID: 1595376042540732823}
   - component: {fileID: 5654042110068159646}
   - component: {fileID: 3660452862597363227}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1300,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1851bd948e5a8484682424090638aeb8, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1493,7 +1493,7 @@ GameObject:
   - component: {fileID: 7568440726899909235}
   - component: {fileID: 3283065704220745811}
   - component: {fileID: 4573414000360234539}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1600,7 +1600,7 @@ GameObject:
   - component: {fileID: 2120210015615941167}
   - component: {fileID: 358899539669403399}
   - component: {fileID: 3055410939557893486}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1708,7 +1708,7 @@ GameObject:
   - component: {fileID: 554352080359964801}
   - component: {fileID: 4554325655542397779}
   - component: {fileID: 5049165313010348946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1759,7 +1759,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1851bd948e5a8484682424090638aeb8, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1830,7 +1830,7 @@ GameObject:
   - component: {fileID: 2011464266710434665}
   - component: {fileID: 766475247003356447}
   - component: {fileID: 5774728256467223590}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

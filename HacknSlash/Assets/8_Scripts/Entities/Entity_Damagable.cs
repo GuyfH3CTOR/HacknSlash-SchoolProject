@@ -21,6 +21,7 @@ public class Entity_Damagable : MonoBehaviour
     [Header("#### References ####")]
     // Public
     public GameObject Slider;
+    public GameObject Body;
     // private
     private Slider lifeSlider;
 
@@ -60,8 +61,8 @@ public class Entity_Damagable : MonoBehaviour
     
     IEnumerator ColorEffect()
     {
-        Material _mat = GetComponent<Renderer>().material;
-        Color _color = GetComponent<Renderer>().material.color;
+        Material _mat = Body.GetComponent<Renderer>().material;
+        Color _color = Body.GetComponent<Renderer>().material.color;
 
         _color = _mat.color;
         _mat.color = Color.white;
