@@ -23,14 +23,14 @@ public class Spell_Instance
     public bool LoadIcon(string path)
     {
         icon = Resources.Load<Sprite>(path); // Load Path
-        Debug.Log("icon "+path);
+        // Debug.Log("icon "+path);
         if(icon == null){return false;}else{return true;} // Return statement
     }
 
     public bool LoadGameObject(string path)
     {
         gameobject = Resources.Load(path) as GameObject; // Load Path
-        Debug.Log("game object "+path);
+        // Debug.Log("game object "+path);
         if(gameobject == null){return false;}else{return true;} // Return statement
     }
 
