@@ -43,7 +43,7 @@ public class Entity_Damagable : MonoBehaviour
         lifeSlider.value = currentLife;
     }
 
-    public void UpdateLife(float value)
+    public bool UpdateLife(float value)
     {
         currentLife = currentLife + value;
         lifeSlider.value = currentLife;
@@ -54,8 +54,11 @@ public class Entity_Damagable : MonoBehaviour
         // Debug.Log(currentLife);
         if(currentLife <= 0)
         {
-            GameObject.Find("Bottom UI").GetComponent<Player_Values>().UpdateXP(xpDrop);
+            GameObject.Find("Player").GetComponent<Player_Values>().UpdateXP(xpDrop);
             Destroy(gameObject);
+            return true;
+        }else{
+            return false;
         }
     }
     

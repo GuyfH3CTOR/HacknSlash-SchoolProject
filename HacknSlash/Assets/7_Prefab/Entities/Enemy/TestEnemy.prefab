@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4085226092831840155}
   - component: {fileID: 662200185147465854}
   - component: {fileID: 6950817828701624998}
-  - component: {fileID: 8635452779674332760}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -85,29 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8635452779674332760
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2382488539049422840}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7488530167780871957
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +180,7 @@ GameObject:
   - component: {fileID: 4726753078501007707}
   - component: {fileID: 4756701725366237944}
   - component: {fileID: 1223972657284043750}
+  - component: {fileID: 3555996363050135667}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -265,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c634d642381e442ba758614b8d94f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseLife: 100
+  baseLife: 10
   xpDrop: 50
   Slider: {fileID: 7515678056130772481}
   Body: {fileID: 2382488539049422840}
@@ -318,6 +295,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 124
   m_CollisionDetection: 0
+--- !u!136 &3555996363050135667
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8147346257659797729}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &2367793569178077158
 PrefabInstance:
   m_ObjectHideFlags: 0

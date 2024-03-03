@@ -12,13 +12,13 @@ public class Player_Values : MonoBehaviour
     [Header("Values")]
     public float maxLife;
     public float currentLife;
-    public float lifeRegeneration = 2f;
+    public float lifeRegeneration = 1f;
         
     [Header("========== Mana ==========")]
     [Header("Values")]
     public float maxMana;
     public float currentMana;
-    public float manaRegeneration = 2f;
+    public float manaRegeneration = 1f;
 
     [Header("========== Level ==========")]
     [Header("Values")]
@@ -52,7 +52,7 @@ public class Player_Values : MonoBehaviour
     {
         Initialization();
     }
-    void Update()
+    void FixedUpdate()
     {
         Debuging();
         Regeneration();

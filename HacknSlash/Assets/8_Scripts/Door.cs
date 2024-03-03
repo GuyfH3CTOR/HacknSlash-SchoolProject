@@ -6,29 +6,51 @@ public class Door : MonoBehaviour
 {
     [Header("========== Door ==========")]
     [Header("#### References ####")]
-    public Transform Pivot;
+    public Transform pivot;
+    [Header("---Sound---")]
+    public AudioSource audioSource;
+    public AudioClip openSoundEffect;
+    public AudioClip closeSoundEffect;
 
     [Header("#### Variables ####")]
     // public
     public bool isOpenAtStart;
-    public Vector3 closeRotation, openRotation;
+    [Header("---Rotation---")]
+    public Vector3 closeRotation;
+    public Vector3 openRotation;
+    [Header("---Position---")]
+    public Vector3 closePosition;
+    public Vector3 openPostion;
     // private
-    private bool isInPosition;
-    private Quaternion CurrentRotation;
-    private Quaternion newRotation;
+    private bool isOpen;
+    private bool isInPosition = true;
+    private Quaternion CurrentRotation, newRotation;
+    private Vector3 CurrentPosition, newPosition;
     private float slerpTimeCount;
 
     [Header("#### Debug ####")]
     public bool Open;
     public bool Close;
 
-    void Start()
-    {
-        if(isOpenAtStart) Pivot.localEulerAngles = openRotation;
-        if(!isOpenAtStart) Pivot.localEulerAngles = closeRotation;
+    void Start(){
+        // Inititalization();
     }
-    void Update()
-    {
+    void Inititalization(){
+        isOpen = isOpenAtStart;
+
+        if(isOpenAtStart){
+            // Debug.Log("is OpenAtStart");
+            pivot.localEulerAngles = openRotation;
+            pivot.transform.localPosition = openPostion;
+        }
+        if(!isOpenAtStart){
+            // Debug.Log("is not OpenAtStart");
+            pivot.localEulerAngles = closeRotation;
+            pivot.transform.localPosition = closePosition;
+        }
+    }
+
+    void Update(){
         // Update Rotation Slerp
         if(!isInPosition)DoorMovement();
 
@@ -42,33 +64,53 @@ public class Door : MonoBehaviour
             Close = !Close;
         }
     }
-    public void DoorMovement()
-    {
-        transform.rotation = Quaternion.Slerp(CurrentRotation, newRotation, slerpTimeCount);
+
+    public void DoorMovement(){
+        //update rotation and position
+        pivot.transform.localRotation = Quaternion.Slerp(CurrentRotation, newRotation, slerpTimeCount);
+        pivot.transform.localPosition = Vector3.Slerp(CurrentPosition, newPosition, slerpTimeCount);
+        // update slerp timer
         slerpTimeCount = slerpTimeCount + Time.deltaTime;
-        if(Pivot.rotation == newRotation) isInPosition = true;
+        if(pivot.localRotation == newRotation && pivot.localPosition == newPosition) isInPosition = true;
     }
 
-    public void OpenDoor()
-    {
-        // Reset Slerp Timer
-        slerpTimeCount = 0;
-        // Get Pivot current rotation
-        CurrentRotation = Pivot.rotation;
-        // Get Pivot new rotation
-        newRotation = Quaternion.Euler(openRotation);
-        // Start Slerp
-        isInPosition = false;
+    public void OpenDoor(){
+        if(!isOpen){
+            // Reset Slerp Timer
+            slerpTimeCount = 0;
+            // Get Pivot current rotation and position
+            CurrentRotation = pivot.localRotation;
+            CurrentPosition = pivot.localPosition;
+            // Get Pivot new rotation and position
+            newRotation = Quaternion.Euler(openRotation);
+            newPosition = openPostion;
+            // Start Slerp
+            isInPosition = false;
+            // Play sound effect
+            audioSource.clip = openSoundEffect;
+            audioSource.Play();
+
+            isOpen = !isOpen;
+        }
     }
-    public void CloseDoor()
-    {
-        // Reset Slerp Timer
-        slerpTimeCount = 0;
-        // Get Pivot current rotation
-        CurrentRotation = Pivot.rotation;
-        // Get Pivot new rotation
-        newRotation = Quaternion.Euler(closeRotation);
-        // Start Slerp
-        isInPosition = false;     
+
+    public void CloseDoor(){
+        if(isOpen){
+            // Reset Slerp Timer
+            slerpTimeCount = 0;
+            // Get Pivot current rotation and position
+            CurrentRotation = pivot.localRotation;
+            CurrentPosition = pivot.localPosition;
+            // Get Pivot new rotation and position
+            newRotation = Quaternion.Euler(closeRotation);
+            newPosition = closePosition;
+            // Start Slerp
+            isInPosition = false;
+            // Play sound effect
+            audioSource.clip = closeSoundEffect;
+            audioSource.Play();
+            
+            isOpen = !isOpen;
+        }
     }
 }

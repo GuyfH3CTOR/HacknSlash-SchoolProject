@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2756161347329948286}
+  - component: {fileID: 8613131200274162140}
+  - component: {fileID: 5488418735093269166}
   m_Layer: 0
   m_Name: Grillage
   m_TagString: Untagged
@@ -35,6 +37,125 @@ Transform:
   - {fileID: 1088043120370049448}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8613131200274162140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267916217652829540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0e616814d257f45adafb85e2dfb61b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 3131039105584971942}
+  audioSource: {fileID: 5488418735093269166}
+  openSoundEffect: {fileID: 8300000, guid: 03bf1419fe4c42745a393facfea8ee41, type: 3}
+  closeSoundEffect: {fileID: 8300000, guid: 7232696db315eca48865150b3a759354, type: 3}
+  isOpenAtStart: 0
+  closeRotation: {x: 0, y: 0, z: 0}
+  openRotation: {x: 0, y: 0, z: 0}
+  closePosition: {x: 0, y: 0, z: 0}
+  openPostion: {x: 0, y: 0, z: 3.5}
+  Open: 0
+  Close: 0
+--- !u!82 &5488418735093269166
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267916217652829540}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &276005942167180398
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,7 +167,7 @@ GameObject:
   - component: {fileID: 8573310496895917221}
   - component: {fileID: 1974716143021525048}
   - component: {fileID: 4574688198904513299}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barreau (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,6 +355,8 @@ GameObject:
   - component: {fileID: 582758271500334277}
   - component: {fileID: 2564533128829830405}
   - component: {fileID: 3769312222199465902}
+  - component: {fileID: 2221949633684293001}
+  - component: {fileID: 3663164655440372507}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -306,6 +429,43 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2221949633684293001
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524639567195214085}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2, y: 18, z: 1}
+  m_Center: {x: 0, y: 8, z: 0}
+--- !u!208 &3663164655440372507
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524639567195214085}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.6, y: 9, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 8, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1795158891969049240
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,8 +475,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3131039105584971942}
-  - component: {fileID: 9115586660292840816}
-  - component: {fileID: 7848506281416201188}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -342,43 +500,6 @@ Transform:
   - {fileID: 8143163432594522387}
   m_Father: {fileID: 2756161347329948286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &9115586660292840816
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795158891969049240}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 5, z: 4}
-  m_Center: {x: 0, y: 2.5, z: 0}
---- !u!208 &7848506281416201188
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795158891969049240}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.25, y: 2.5, z: 2}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 2.5, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &1902498609735250584
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +511,7 @@ GameObject:
   - component: {fileID: 2974291828308326424}
   - component: {fileID: 7974808253699604453}
   - component: {fileID: 2788455978314830790}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barreau (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +594,7 @@ GameObject:
   - component: {fileID: 5021925868492050354}
   - component: {fileID: 7328616392016295684}
   - component: {fileID: 7743046675258457326}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barreau (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +782,7 @@ GameObject:
   - component: {fileID: 8157382948483431935}
   - component: {fileID: 5137431680884221738}
   - component: {fileID: 3158853399404691950}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barreau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -744,7 +865,7 @@ GameObject:
   - component: {fileID: 2183708350799043095}
   - component: {fileID: 7428935660509102199}
   - component: {fileID: 1259054960032305418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barreau (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +1031,7 @@ GameObject:
   - component: {fileID: 7571538492725610651}
   - component: {fileID: 5211062681088275864}
   - component: {fileID: 6735150902317663403}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barreau (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -993,7 +1114,7 @@ GameObject:
   - component: {fileID: 5351440853135453632}
   - component: {fileID: 7319695897487643415}
   - component: {fileID: 4761775723891721381}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barreau (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1076,7 +1197,7 @@ GameObject:
   - component: {fileID: 3343682518348917000}
   - component: {fileID: 8120063601953395279}
   - component: {fileID: 7196437892377661944}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barreau (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1157,7 +1278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470113891868639049}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1199,7 +1320,7 @@ GameObject:
   - component: {fileID: 71560090310957344}
   - component: {fileID: 4118451112353095943}
   - component: {fileID: 3012164341434800834}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barreau (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
