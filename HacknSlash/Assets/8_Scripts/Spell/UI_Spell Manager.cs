@@ -8,10 +8,9 @@ using UnityEngine.UI;
 public class UI_SpellManager : MonoBehaviour
 {
     [Header("========== Spell ==========")]
-
     [Header("#### References ####")]
     public GameObject g_LoadSlider;
-    public GameObject g_playerValues;
+    public GameObject player;
 
     [Header("#### Variable ####")]
     public GameObject g_PlayerArm;
@@ -49,7 +48,7 @@ public class UI_SpellManager : MonoBehaviour
 
     void Initialization()
     {
-        player_Values = g_playerValues.GetComponent<Player_Values>(); // Get Player Values Component
+        player_Values = player.GetComponent<Player_Values>(); // Get Player Values Component
         iconNormalSize = spellSlot[2].GetComponent<RectTransform>().sizeDelta; // Get size of 2nd skill icon
 
         // ##### Get Spells Data #####
@@ -103,7 +102,6 @@ public class UI_SpellManager : MonoBehaviour
             }
             UpdateSpellsSlot();
         }
-        
         if(Input.GetKeyDown(KeyCode.Mouse0) && spellSlot[SelectedSpellNumber - 1].GetComponent<SpellReload>().isLoaded && player_Values.currentMana > _manaCost)
         {
             StartSpellCast();

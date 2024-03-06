@@ -5045,12 +5045,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270bbe9aa77da694fbeac845bdcbf024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f_destroyDelay: 0.5
-  f_speed: 20
+  destroyDelay: 0.5
+  shootForce: 1000
   f_damage: 5
   ProjectileParticule: {fileID: 1758473627833946668, guid: 9b21333b068a5084ba09535839bee3c8, type: 3}
   as_start: {fileID: 6233366550694187056}
   as_impact: {fileID: 4776947562864725163}
+  audioSource: {fileID: 0}
 --- !u!135 &6056176009879020757
 SphereCollider:
   m_ObjectHideFlags: 0

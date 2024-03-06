@@ -2531,7 +2531,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 9, y: 0.1, z: 9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5179696383260893481}
@@ -2563,8 +2563,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 53.062023, z: 1}
-  m_Center: {x: 0, y: 26.031, z: 0}
+  m_Size: {x: 8, y: 4, z: 8}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!114 &8376660206601874613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2577,6 +2577,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e7c08bdc5066c4199f6b159d0c2f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sphereZone: 0
+  sphereRadius: 0
+  BoxZone: 1
+  boxRadius: 8
+  EntitiesDetected: []
+  EntitiesInZone: []
 --- !u!1 &1749203670627280834
 GameObject:
   m_ObjectHideFlags: 0
@@ -17317,6 +17323,7 @@ MonoBehaviour:
   trapPivot: {fileID: 6892838470905657547}
   damageZone: {fileID: 1345762314585034346}
   activationIntervalInSecond: 3
+  trapDamage: 30
   upPostion: {x: 0, y: 0.5, z: 0}
   middlePostion: {x: 0, y: 0, z: 0}
   downPosition: {x: 0, y: -1, z: 0}

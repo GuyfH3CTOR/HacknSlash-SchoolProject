@@ -4,26 +4,31 @@ using UnityEditor;
 
 public class FireBolt : MonoBehaviour
 {
-    [SerializeField] float f_destroyDelay;
-    [SerializeField] float f_speed;
-
-    [SerializeField] float f_damage = 5;
+    [Header("========== Spell ==========")]
+    [Header("#### Settings ####")]
+    public float destroyDelay;
+    public float shootForce;
+    public float f_damage = 5;
     
-    [SerializeField] GameObject ProjectileParticule;
+    public GameObject ProjectileParticule;
 
     public AudioSource as_start;
     public AudioSource as_impact;
     
+    [Header("#### References ####")]
+    private Rigidbody rb;
+    public AudioSource audioSource;
+    
     void Start()
     {
+        //Fetch the Rigidbody from the GameObject with this script attached
+        rb = GetComponent<Rigidbody>();
+        //addForce to projectile
+        rb.AddForce(transform.forward * shootForce);
+        // Play shooting sound
         as_start.Play(0);
+        // Start Destroy Countdown
         StartCoroutine(DestroyCoroutine());
-    }
-
-    void Update()
-    {
-        // Debug.Log(Time.deltaTime);
-        transform.position = transform.position + (transform.forward * Time.deltaTime * f_speed);
     }
 
     void OnCollisionEnter(Collision _collider)
@@ -43,7 +48,7 @@ public class FireBolt : MonoBehaviour
 
     IEnumerator DestroyCoroutine()
     {
-        yield return new WaitForSeconds(f_destroyDelay);
+        yield return new WaitForSeconds(destroyDelay);
 
         Instantiate(ProjectileParticule, transform.position, transform.rotation);
         Destroy(gameObject);

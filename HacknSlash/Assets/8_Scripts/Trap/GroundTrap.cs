@@ -11,7 +11,7 @@ public class GroundTrap : MonoBehaviour
     public Transform trapPivot;
     public GameObject damageZone;
     // private
-    private EntitesDetector entitesDetector;
+    private EntitiesDetector entitiesDetector;
 
     [Header("#### Settings ####")]
     // public
@@ -26,7 +26,7 @@ public class GroundTrap : MonoBehaviour
     public Vector3 downPosition;
 
     void Start(){
-        entitesDetector = damageZone.GetComponent<EntitesDetector>();
+        entitiesDetector = damageZone.GetComponent<EntitiesDetector>();
         StartCoroutine(ActivationInterval());
     }
 
@@ -43,14 +43,14 @@ public class GroundTrap : MonoBehaviour
 
     void ActivateTrap(){
         trapPivot.localPosition = upPostion;
-        for(int i = 0; i < entitesDetector.EntitesDetected.Count; i++){
-            if(entitesDetector.EntitesDetected[i].GetComponent<Entity_Damagable>() != null){
-                if(entitesDetector.EntitesDetected[i].GetComponent<Entity_Damagable>().UpdateLife(-trapDamage)){
-                    entitesDetector.EntitesDetected.RemoveAt(i);
-                }
-            }
-            if(entitesDetector.EntitesDetected[i].GetComponent<Player_Values>() != null){
-                entitesDetector.EntitesDetected[i].GetComponent<Player_Values>().UpdateLifeValue(-trapDamage);
+        for(int i = 0; i < entitiesDetector.EntitiesDetected.Count; i++){
+            if(entitiesDetector.EntitiesDetected[i].GetComponent<Entity_Damagable>() != null){
+                entitiesDetector.EntitiesDetected[i].GetComponent<Entity_Damagable>().UpdateLife(-trapDamage);
+                // if(entitiesDetector.EntitiesDetected[i].GetComponent<Entity_Damagable>().UpdateLife(-trapDamage)){
+                //     entitiesDetector.EntitiesDetected.RemoveAt(i);
+                // }
+            }else if(entitiesDetector.EntitiesDetected[i].GetComponent<Player_Values>() != null){
+                entitiesDetector.EntitiesDetected[i].GetComponent<Player_Values>().UpdateLifeValue(-trapDamage);
             }
         }
         StartCoroutine(DeactivationInterval());
