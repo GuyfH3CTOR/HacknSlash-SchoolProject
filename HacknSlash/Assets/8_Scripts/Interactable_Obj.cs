@@ -1,15 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class Interactable_Obj : MonoBehaviour
 {
+    [Header("#### Settings ####")]
+    [Header("#### Variables ####")]
+    [Header("#### References ####")]
     public GameObject Alert;
     private GameObject player;
 
     public bool locked = false;
     protected bool isUsable = false;
+    
+    // Event 
+    [Serializable]
+    public class Unlock_Event : UnityEvent {}
+    [FormerlySerializedAs("onActivated")]
+    [SerializeField]
+    private Unlock_Event onActivated = new Unlock_Event();
 
     public void Interact()
     {
@@ -25,7 +38,7 @@ public class Interactable_Obj : MonoBehaviour
 
     public virtual void InteractEffect()
     {
-
+        onActivated.Invoke();
     }
 
     public void SwitchLocked()
