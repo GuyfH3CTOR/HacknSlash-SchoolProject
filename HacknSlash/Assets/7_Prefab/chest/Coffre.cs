@@ -28,11 +28,11 @@ public class Coffre : Interactable_Obj
         }
     }
 
-    public override void InteractEffect()
-    {
-        base.InteractEffect();
-        as_ChestOpen.Play(0);
-        a_ChestAnimation.Play("New Animation");
-        ps_ChestParticule.Play();
-    }
+    // public override void InteractEffect()
+    // {
+    //     base.InteractEffect();
+    //     as_ChestOpen.Play(0);
+    //     a_ChestAnimation.Play("New Animation");
+    //     ps_ChestParticule.Play();
+    // }
 }

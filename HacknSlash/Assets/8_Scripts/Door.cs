@@ -76,6 +76,7 @@ public class Door : MonoBehaviour
 
     public void OpenDoor(){
         if(!isOpen){
+            Debug.Log("Open door");
             // Reset Slerp Timer
             slerpTimeCount = 0;
             // Get Pivot current rotation and position
@@ -96,6 +97,7 @@ public class Door : MonoBehaviour
 
     public void CloseDoor(){
         if(isOpen){
+            Debug.Log("Close door");
             // Reset Slerp Timer
             slerpTimeCount = 0;
             // Get Pivot current rotation and position
@@ -111,6 +113,14 @@ public class Door : MonoBehaviour
             audioSource.Play();
             
             isOpen = !isOpen;
+        }
+    }
+
+    public void SwitchDoorState(){
+        if(isOpen){
+            CloseDoor();
+        }else{
+            OpenDoor();
         }
     }
 }
