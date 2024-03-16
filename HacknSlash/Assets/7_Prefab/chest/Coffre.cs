@@ -4,35 +4,43 @@ using UnityEngine;
 
 public class Coffre : Interactable_Obj
 {
-    [Header("Object Settings :")]
+    [Header("#### Chest Settings ####")]
 
     public GameObject g_Mesh;
     public Item item;
 
-    [Header("Open Animation :")]
-    public AudioSource as_ChestOpen;
-    public Animation a_ChestAnimation;
-    public ParticleSystem ps_ChestParticule;
+    [Header("#### Chest Openning References ####")]
+    public AudioSource audioSource;
+    public Animation ChestOpenAnimation;
+    public ParticleSystem particules;
 
-
-    public override void Interaction()
+    public override bool InteractionCondition()
     {
         // Get player
         GameObject player = GameObject.Find("Player");
-
         // Check if there is enough space in player inventory
         if(player.GetComponentInChildren<Inventory>().inv.Count < player.GetComponentInChildren<Inventory>().numberOfSlot){
-            base.Interaction();
-            Inventory inventory = player.GetComponentInChildren<Inventory>();
-            inventory.AddItem(item);
+            InteractionEffect();
         }
+        return base.InteractionCondition();
     }
 
-    // public override void InteractEffect()
-    // {
-    //     base.InteractEffect();
-    //     as_ChestOpen.Play(0);
-    //     a_ChestAnimation.Play("New Animation");
-    //     ps_ChestParticule.Play();
-    // }
+    public override void InteractionEffect()
+    {
+        // Get player and add Item to Inventory
+        GameObject player = GameObject.Find("Player");
+        Inventory inventory = player.GetComponentInChildren<Inventory>();
+        inventory.AddItem(item);
+
+        // Play Chest Openning Effect
+        base.InteractionEffect();
+        ChestOpenningAnimation();
+    }
+
+    public void ChestOpenningAnimation()
+    {
+        audioSource.Play(0);
+        ChestOpenAnimation.Play("Chest Openning Animation");
+        particules.Play();
+    }
 }

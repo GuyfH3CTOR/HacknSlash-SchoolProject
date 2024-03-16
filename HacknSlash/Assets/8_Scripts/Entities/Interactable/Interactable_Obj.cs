@@ -38,24 +38,26 @@ public class Interactable_Obj : MonoBehaviour
         }
     }
 
-    public void SwitchLock()
-    {
+    public void SwitchLock(){
         locked = !locked;
     }
+    
+    public virtual bool InteractionCondition(){
+        return true;
+    }
 
-    public virtual void Interaction()
-    {
-        if(!locked){
+    public void Interaction(){
+        if(!locked && InteractionCondition()){
             // Stop Alert and lock Interactor
             if(isOneUse)playerInRangeAlert.AlertOff();
             if(isOneUse)SwitchLock();
-
-            // debug
-            Debug.Log("interaction");
-            // Effect of activation
-            playerInRangeAlert.Use();
-            onActivated.Invoke();
+            InteractionEffect(); // Effect Of Interaction
         }
+    }
+
+    public virtual void InteractionEffect(){
+        playerInRangeAlert.Use();
+        onActivated.Invoke();
     }
 
     public void PlayerInRange(){

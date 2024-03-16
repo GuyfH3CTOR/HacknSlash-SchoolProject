@@ -33,19 +33,19 @@ public class Door : MonoBehaviour
     public bool Close;
 
     void Start(){
-        // Inititalization();
+        Inititalization();
     }
     void Inititalization(){
         isOpen = isOpenAtStart;
 
-        if(isOpenAtStart){
+        if(isOpen){
             // Debug.Log("is OpenAtStart");
-            pivot.localEulerAngles = openRotation;
+            pivot.localRotation = Quaternion.Euler(openRotation);
             pivot.transform.localPosition = openPostion;
         }
-        if(!isOpenAtStart){
+        if(!isOpen){
             // Debug.Log("is not OpenAtStart");
-            pivot.localEulerAngles = closeRotation;
+            pivot.localRotation = Quaternion.Euler(closeRotation);
             pivot.transform.localPosition = closePosition;
         }
     }
@@ -76,7 +76,7 @@ public class Door : MonoBehaviour
 
     public void OpenDoor(){
         if(!isOpen){
-            Debug.Log("Open door");
+            // Debug.Log("Open door");
             // Reset Slerp Timer
             slerpTimeCount = 0;
             // Get Pivot current rotation and position
@@ -97,7 +97,7 @@ public class Door : MonoBehaviour
 
     public void CloseDoor(){
         if(isOpen){
-            Debug.Log("Close door");
+            // Debug.Log("Close door");
             // Reset Slerp Timer
             slerpTimeCount = 0;
             // Get Pivot current rotation and position
