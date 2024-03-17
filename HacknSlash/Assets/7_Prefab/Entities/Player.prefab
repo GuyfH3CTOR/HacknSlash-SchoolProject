@@ -150,7 +150,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!114 &3474931058421334727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,11 +330,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93dbfb00214a3d04784e2680336666ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfSlot: 36
-  inv: []
   inventoryBag: {fileID: 0}
-  g_slot: {fileID: 7388554029815124969, guid: c653e24132cc9eb4ca38799e7c124b33, type: 3}
-  updateInv: 0
+  slot: {fileID: 7388554029815124969, guid: c653e24132cc9eb4ca38799e7c124b33, type: 3}
+  inventorySlots: []
+  draggableTransform: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  giveItemBtn: {fileID: 0}
 --- !u!1 &3944338790777327103
 GameObject:
   m_ObjectHideFlags: 0

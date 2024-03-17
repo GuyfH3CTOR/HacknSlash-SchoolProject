@@ -38,7 +38,7 @@ public class Spectre : EnemyManager
         if(b_IsPhasing)
         {
             // Debug.Log("is not Spectre");
-            GetComponent<Renderer>().material = m_Spectre;
+            bodyRenderer.material = m_Spectre;
 
             f_TimeCoroutine = f_TimeSpectre;
             StartCoroutine(Phasing());
@@ -46,7 +46,7 @@ public class Spectre : EnemyManager
         else
         {
             // Debug.Log("is Spectre");
-            GetComponent<Renderer>().material = m_Normal;
+            bodyRenderer.material = m_Normal;
 
             f_TimeCoroutine = f_TimeNormal;
             StartCoroutine(Phasing());

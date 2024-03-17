@@ -19,7 +19,7 @@ public class Coffre : Interactable_Obj
         // Get player
         GameObject player = GameObject.Find("Player");
         // Check if there is enough space in player inventory
-        if(player.GetComponentInChildren<Inventory>().inv.Count < player.GetComponentInChildren<Inventory>().numberOfSlot){
+        if(player.GetComponentInChildren<Inventory>().items.Count < Inventory.numberOfSlot){
             InteractionEffect();
         }
         return base.InteractionCondition();
@@ -30,7 +30,7 @@ public class Coffre : Interactable_Obj
         // Get player and add Item to Inventory
         GameObject player = GameObject.Find("Player");
         Inventory inventory = player.GetComponentInChildren<Inventory>();
-        inventory.AddItem(item);
+        inventory.SpawnInventoryItem(item);
 
         // Play Chest Openning Effect
         base.InteractionEffect();

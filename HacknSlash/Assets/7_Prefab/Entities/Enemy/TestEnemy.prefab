@@ -217,19 +217,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c5c281bbdbad4468b17f4961d9c8c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateIndicator: {fileID: 7488530167780871957}
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 8
   WhatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 1
-  timeBetweenAttacks: 0.5
   sightRange: 20
-  attackRange: 12
-  playerInSightRange: 0
-  playerInAttackRange: 0
+  attackRange: 5
+  waitingTimeMin: 2
+  waitingTimeMax: 10
+  idleColorIndicator: {r: 0, g: 1, b: 0, a: 1}
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 10
+  patrollingColorIndicator: {r: 0, g: 0, b: 1, a: 1}
+  chasePlayerColorIndicator: {r: 1, g: 0, b: 1, a: 1}
+  timeBetweenAttacks: 0.5
+  attackColorIndicator: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &4726753078501007707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +250,8 @@ MonoBehaviour:
   baseLife: 10
   xpDrop: 50
   Slider: {fileID: 7515678056130772481}
-  Body: {fileID: 2382488539049422840}
+  body: {fileID: 2382488539049422840}
+  bodyRenderer: {fileID: 0}
 --- !u!195 &4756701725366237944
 NavMeshAgent:
   m_ObjectHideFlags: 0

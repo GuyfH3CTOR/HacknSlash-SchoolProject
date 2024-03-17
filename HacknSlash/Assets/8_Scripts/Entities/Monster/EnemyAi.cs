@@ -5,27 +5,55 @@ using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour
 {
+    [Header("References")]
+    // public
+    public GameObject stateIndicator;
+    public LayerMask WhatIsGround, WhatIsPlayer;
+    // private
+    private Renderer stateRenderer;
     private NavMeshAgent agent;
     private Transform player;
 
-    public LayerMask WhatIsGround, WhatIsPlayer;
-
-    // Patrolling
-    public Vector3 walkPoint;
-    private bool walkPointSet;
-    public float walkPointRange;
-
-    // Attacking
-    public float timeBetweenAttacks;
-    private bool alreadyAttacked;
-
-    // States
+    [Header("State Settings")]
+    // public
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    // private
+    private bool playerInSightRange;
+    private bool playerInAttackRange;
+
+    [Header("Idle State Settings")]
+    // public
+    public float waitingTimeMin;
+    public float waitingTimeMax;
+    public Color idleColorIndicator = Color.green;
+    // private
+    private float waitingTime;
+    private bool idle = true;
+    private bool IsIdling;
+
+    [Header("Patrolling State Settings")]
+    // public
+    public Vector3 walkPoint;
+    public float walkPointRange;
+    public Color patrollingColorIndicator = Color.blue;
+    // private
+    private bool walkPointSet = false;
+
+    [Header("Chase Player State Settings")]
+    // public
+    public Color chasePlayerColorIndicator = Color.magenta;
+
+    [Header("Attacking State Settings")]
+    // public
+    public float timeBetweenAttacks;
+    public Color attackColorIndicator = Color.red;
+    // private
+    private bool alreadyAttacked;
 
     private void Awake(){
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        stateRenderer = stateIndicator.GetComponent<Renderer>();
     }
 
     private void Update(){
@@ -33,35 +61,63 @@ public class EnemyAi : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
 
-        if(!playerInSightRange && !playerInAttackRange) Patrolling();
+        // GetState
+        if(!playerInSightRange && !playerInAttackRange && idle && !IsIdling) Idle();
+        if(!playerInSightRange && !playerInAttackRange && !idle) Patrolling();
         if(playerInSightRange && !playerInAttackRange) ChasePLayer();
         if(playerInSightRange && playerInAttackRange) AttackPlayer();
     }
 
+    private void Idle(){
+        IsIdling = true;
+        waitingTime = Random.Range(waitingTimeMin, waitingTimeMax);
+        stateRenderer.material.color = idleColorIndicator;
+        StartCoroutine(IdleWait());
+    }
+
+    private IEnumerator IdleWait(){
+        yield return new WaitForSeconds(waitingTime);
+        idle = false;
+        IsIdling = false;
+    }
+
     private void Patrolling(){
+        stateRenderer.material.color = patrollingColorIndicator;
         if(!walkPointSet) SearchWalkPoint();
         if(walkPointSet) agent.SetDestination(walkPoint);
 
-        // Check if player has reached the walkpoint
+        // Check if AI has reached the walkpoint
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-        // Walkpoint reached
-        if(distanceToWalkPoint.magnitude < 1f) walkPointSet = false;
+        if(distanceToWalkPoint.magnitude < 1f){
+            walkPointSet = false;
+            idle = true;
+        }
     }
-    private void SearchWalkPoint(){
-        // Calculate random point in range
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        // Set new Walkpoint
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y,transform.position.x + randomZ);
-        // Check if walkpoint is inside the map
-        if(Physics.Raycast(walkPoint, -transform.up, 2f, WhatIsGround)) walkPointSet = true;
+    
+    bool SearchWalkPoint(){
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = transform.position + Random.insideUnitSphere * walkPointRange;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                walkPoint = hit.position;
+                walkPointSet = true;
+                return true;
+            }
+        }
+        walkPoint = Vector3.zero;
+        return false;
     }
 
     private void ChasePLayer(){
+        stateRenderer.material.color = chasePlayerColorIndicator;
         agent.SetDestination(player.position);
+        transform.LookAt(new Vector3 (player.position.x, transform.position.y, player.position.z));
     }
 
     private void AttackPlayer(){
+        stateRenderer.material.color = attackColorIndicator;
         // Make Sure enemy doesn't move
         agent.SetDestination(transform.position);
         transform.LookAt(new Vector3 (player.position.x, transform.position.y, player.position.z));
@@ -74,9 +130,11 @@ public class EnemyAi : MonoBehaviour
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
+
     public virtual void Attack(){
 
     }
+
     private void ResetAttack(){
         alreadyAttacked = false;
     }

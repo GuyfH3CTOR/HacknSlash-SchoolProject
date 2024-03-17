@@ -122,7 +122,8 @@ MonoBehaviour:
   baseLife: 10
   xpDrop: 0
   Slider: {fileID: 5817979862634194608}
-  Body: {fileID: 4571644763220399368}
+  body: {fileID: 4571644763220399368}
+  bodyRenderer: {fileID: 0}
 --- !u!1 &6906312818381912658
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,9 +6,7 @@ using UnityEngine.UI;
 
 public class Entity_Damagable : MonoBehaviour
 {    
-    [Header("========== Damagable ==========")]
-
-    [Header("#### Variables ####")]
+    [Header("#### Health Settings ####")]
     // public
     public float baseLife = 100;
     public float xpDrop;
@@ -21,8 +19,9 @@ public class Entity_Damagable : MonoBehaviour
     [Header("#### References ####")]
     // Public
     public GameObject Slider;
-    public GameObject Body;
+    public GameObject body;
     // private
+    [HideInInspector] public Renderer bodyRenderer;
     private Slider lifeSlider;
 
     void Start()
@@ -41,6 +40,8 @@ public class Entity_Damagable : MonoBehaviour
         // Set Slider Values
         lifeSlider.maxValue = maxLife;
         lifeSlider.value = currentLife;
+
+        bodyRenderer = body.GetComponent<Renderer>();
     }
 
     public bool UpdateLife(float value)
@@ -64,8 +65,8 @@ public class Entity_Damagable : MonoBehaviour
     
     IEnumerator ColorEffect()
     {
-        Material _mat = Body.GetComponent<Renderer>().material;
-        Color _color = Body.GetComponent<Renderer>().material.color;
+        Material _mat = bodyRenderer.material;
+        Color _color = bodyRenderer.material.color;
 
         _color = _mat.color;
         _mat.color = Color.white;
