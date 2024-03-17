@@ -11,6 +11,9 @@ public class UI_SpellManager : MonoBehaviour
     [Header("#### References ####")]
     public GameObject g_LoadSlider;
     public GameObject player;
+    public AudioSource audioSourceSpellUse;
+    public AudioSource audioSourceSpellChange;
+    public ManaPoolBackground manaBackground;
 
     [Header("#### Variable ####")]
     public GameObject g_PlayerArm;
@@ -19,6 +22,10 @@ public class UI_SpellManager : MonoBehaviour
 
     private int SelectedSpellNumber = 1;
     private float scrollScale = 0.1f;
+    
+    [Header("#### Sound References ####")]
+    public AudioClip audioNotEnoughMana;
+    public AudioClip audioNotLoaded;
 
     [Header("#### Spell Slot ####")]
     public GameObject[] spellSlot;
@@ -48,8 +55,10 @@ public class UI_SpellManager : MonoBehaviour
 
     void Initialization()
     {
-        player_Values = player.GetComponent<Player_Values>(); // Get Player Values Component
-        iconNormalSize = spellSlot[2].GetComponent<RectTransform>().sizeDelta; // Get size of 2nd skill icon
+        // Get Player Values Component
+        player_Values = player.GetComponent<Player_Values>(); 
+        // Get size of 2nd skill icon (just to be sure)
+        iconNormalSize = spellSlot[2].GetComponent<RectTransform>().sizeDelta; 
 
         // ##### Get Spells Data #####
         string[] datas = LoadSpellData.ReadString();
@@ -74,8 +83,7 @@ public class UI_SpellManager : MonoBehaviour
     {
         MouseInput();        
 
-        if(isLoading)
-        {
+        if(isLoading){
             LoadCast();
         }
     }
@@ -105,6 +113,18 @@ public class UI_SpellManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Mouse0) && spellSlot[SelectedSpellNumber - 1].GetComponent<SpellReload>().isLoaded && player_Values.currentMana > _manaCost)
         {
             StartSpellCast();
+        }else if(Input.GetKeyDown(KeyCode.Mouse0) && !spellSlot[SelectedSpellNumber - 1].GetComponent<SpellReload>().isLoaded){
+            // Audio Feedback
+            audioSourceSpellUse.clip = audioNotLoaded;
+            audioSourceSpellUse.Play(0);
+            // Interface Feedback
+            StartCoroutine(spellSlot[SelectedSpellNumber - 1].GetComponent<SpellReload>().NotLoaded());
+        }else if(Input.GetKeyDown(KeyCode.Mouse0) && player_Values.currentMana < _manaCost){
+            // Audio Feedback
+            audioSourceSpellUse.clip = audioNotEnoughMana;
+            audioSourceSpellUse.Play(0);
+            // Interface Feedback
+            StartCoroutine(manaBackground.NotEnoughMana());
         }
         if(Input.GetKeyUp(KeyCode.Mouse0) && spellSlot[SelectedSpellNumber - 1].GetComponent<SpellReload>().isLoaded && player_Values.currentMana > _manaCost)
         {
@@ -112,9 +132,11 @@ public class UI_SpellManager : MonoBehaviour
         }
     }
 
-    void UpdateSpellsSlot()
-    {
-        foreach(GameObject _g in spellSlot) // Get all spells icon
+    void UpdateSpellsSlot(){
+        // Play Sound
+        audioSourceSpellChange.Play(0);
+        // Get all spells icon
+        foreach(GameObject _g in spellSlot) 
         {
             _g.GetComponent<RectTransform>().sizeDelta = iconNormalSize; // Reset size of ALL skill icon
         }

@@ -9,6 +9,7 @@ public class SpellReload : MonoBehaviour
     public float LoadTime;
     private float Load;
     private float maxLoad;
+    public Image background;
 
     void Update()
     {
@@ -33,5 +34,12 @@ public class SpellReload : MonoBehaviour
     {
         Load = maxLoad;
         isLoaded = false;
+    }
+
+    public IEnumerator NotLoaded(){
+        // Interface Feedback
+        background.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        background.material.color = Color.white;
     }
 }

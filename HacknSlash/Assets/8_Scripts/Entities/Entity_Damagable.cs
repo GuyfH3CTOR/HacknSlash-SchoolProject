@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class Entity_Damagable : MonoBehaviour
 {    
+    [Header("#### Drop Settings ####")]
+    // public
+    public int gold = 10;
+
     [Header("#### Health Settings ####")]
     // public
     public float baseLife = 100;
@@ -55,7 +59,8 @@ public class Entity_Damagable : MonoBehaviour
         // Debug.Log(currentLife);
         if(currentLife <= 0)
         {
-            GameObject.Find("Player").GetComponent<Player_Values>().UpdateXP(xpDrop);
+            if(xpDrop != 0)GameObject.Find("Player").GetComponent<Player_Values>().UpdateXP(xpDrop);
+            GameObject.Find("Player").GetComponent<Player_Values>().UpdateGold(gold);
             Destroy(gameObject);
             return true;
         }else{

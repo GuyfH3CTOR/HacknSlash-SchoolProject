@@ -4,18 +4,23 @@ using UnityEditor;
 
 public class FireBolt : MonoBehaviour
 {
-    [Header("========== Spell ==========")]
-    [Header("#### Settings ####")]
+    [Header("#### Spell Settings ####")]
+    // public
     public float destroyDelay;
     public float shootForce;
     public float f_damage = 5;
+    // private
+    private bool isDestroying;
     
-    public GameObject ProjectileParticule;
+    [Header("#### Particules Settings ####")]
+    public GameObject ImpactParticule;
 
-    public AudioSource as_start;
-    public AudioSource as_impact;
+    [Header("#### Audio Settings ####")]
+    public AudioClip useAudio;
+    public AudioClip impactAudio;
     
     [Header("#### References ####")]
+    public GameObject spellBody;
     private Rigidbody rb;
     public AudioSource audioSource;
     
@@ -26,31 +31,59 @@ public class FireBolt : MonoBehaviour
         //addForce to projectile
         rb.AddForce(transform.forward * shootForce);
         // Play shooting sound
-        as_start.Play(0);
+        audioSource.clip = useAudio;
+        audioSource.Play(0);
         // Start Destroy Countdown
-        StartCoroutine(DestroyCoroutine());
+        StartCoroutine(SpellLifeLength());
     }
 
     void OnCollisionEnter(Collision _collider)
     {
-        if(_collider.gameObject.GetComponentInChildren<Entity_Damagable>()) // Is Entity Damagable
+        if(_collider.gameObject.GetComponentInChildren<Entity_Damagable>() && !isDestroying) // Is Entity Damagable
         {
-            _collider.gameObject.GetComponentInChildren<Entity_Damagable>().UpdateLife(-f_damage); // Damage Entity
-            Instantiate(ProjectileParticule, transform.position, transform.rotation); // Create Effect
-            Destroy(gameObject);
+            // stop a second collider to activate 
+            isDestroying = true;
+            // Damage Entity
+            _collider.gameObject.GetComponentInChildren<Entity_Damagable>().UpdateLife(-f_damage);
+            // Create Effect
+            Instantiate(ImpactParticule, transform.position, transform.rotation); 
+            // play impact sound
+            audioSource.clip = impactAudio;
+            audioSource.Play(0);
+
+            StopCoroutine(SpellLifeLength());
+            StartCoroutine(WaitToDestroy());
         }
-        else
+        else if(!isDestroying)
         {
-            Instantiate(ProjectileParticule, transform.position, transform.rotation); // Create Effect
-            Destroy(gameObject);
+            // stop a second collider to activate 
+            isDestroying = true;
+            // Create Effect
+            Instantiate(ImpactParticule, transform.position, transform.rotation);
+            // play impact sound
+            audioSource.clip = impactAudio;
+            audioSource.Play(0);
+
+            StopCoroutine(SpellLifeLength());
+            StartCoroutine(WaitToDestroy());
         }
     }
 
-    IEnumerator DestroyCoroutine()
+    IEnumerator SpellLifeLength()
     {
         yield return new WaitForSeconds(destroyDelay);
-
-        Instantiate(ProjectileParticule, transform.position, transform.rotation);
+        StartCoroutine(WaitToDestroy());
+    }
+    
+    IEnumerator WaitToDestroy()
+    {
+        // Hide Body
+        spellBody.SetActive(false);
+        // stop mouvement
+        rb.velocity = Vector3.zero;
+        // Get Impact audio Length
+        float soundLength = impactAudio.length;
+        yield return new WaitForSeconds(soundLength);
         Destroy(gameObject);
     }
 }

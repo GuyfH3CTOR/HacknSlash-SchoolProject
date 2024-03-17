@@ -10,6 +10,10 @@ public class Player_Values : MonoBehaviour
 {        
     [Header("========== Life ==========")]
     [Header("Values")]
+    public int gold;
+
+    [Header("========== Life ==========")]
+    [Header("Values")]
     public float maxLife;
     public float currentLife;
     public float lifeRegeneration = 1f;
@@ -26,7 +30,10 @@ public class Player_Values : MonoBehaviour
     public float currentXP = 0;
     public float nextLevelxp = 100;
 
-    [Header("========== Divers ==========")]
+    [Header("========== References ==========")]
+    [Header("Death Screen")]
+    public GameObject deathScreen;
+
     [Header("Slider Ref")]
     public GameObject g_lifeSlider;
     public GameObject g_manaSlider;
@@ -34,11 +41,19 @@ public class Player_Values : MonoBehaviour
 
     [Header("TextMeshPro Ref")]
     public GameObject g_levelText;
+    public Stats stats;
     
     [Header("Slider Components")]
     private Slider lifeSlider;
     private Slider manaSlider;
     private Slider levelSlider;
+    
+    [Header("player")]
+    public Renderer bodyRenderer;
+
+    [Header("SoundSource")]
+    public AudioSource audioAddxp;
+    public AudioSource audioTakeDamage;
 
     [Header("TextMeshPro Components")]
     private TMP_Text levelText;
@@ -47,6 +62,8 @@ public class Player_Values : MonoBehaviour
     public bool miseAJour;
     public bool AddXP;
     public float XPtoAdd;
+    public bool takeDamage;
+    public float damageToTake;
 
     void Start()
     {
@@ -68,6 +85,11 @@ public class Player_Values : MonoBehaviour
         {
             UpdateXP(XPtoAdd);
             AddXP = !AddXP;
+        }
+        if(takeDamage)
+        {
+            UpdateLifeValue(damageToTake);
+            takeDamage = !takeDamage;
         }
     }
 
@@ -93,18 +115,42 @@ public class Player_Values : MonoBehaviour
 
         // #### Set TextMeshPro Value ####
         levelText.text = currentLevel.ToString();
+        stats.UpdateStats();
     }
 
     // #### Update Values ####
     public void UpdateLifeValue(float _UpdateLifeValue) {
+        audioTakeDamage.Play(0);
         currentLife = currentLife + _UpdateLifeValue;
         UpdateLifeSlider();
+        if(currentLife < 0){
+            deathScreen.SetActive(true);
+        }
+        StartCoroutine(ColorEffect());
     }
+    
+    IEnumerator ColorEffect()
+    {
+        Material _mat = bodyRenderer.material;
+        Color _color = bodyRenderer.material.color;
+
+        _color = _mat.color;
+        _mat.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        _mat.color = _color;
+    }
+
     public void UpdateManaValue(float _UpdateManaValue) {
         currentMana = currentMana + _UpdateManaValue;
         UpdateManaSlider();
     }
+
     public void UpdateXP(float _UpdateXPValue) {
+        audioAddxp.Play(0);
+        AddXp(_UpdateXPValue);
+    }
+
+    public void AddXp(float _UpdateXPValue){
         currentXP = currentXP + _UpdateXPValue;
         levelSlider.value = currentXP;
 
@@ -113,6 +159,12 @@ public class Player_Values : MonoBehaviour
             UpdateLevel(_AdditionalXP);
         }
     }
+    
+    public void UpdateGold(int _UpdateGoldValue) {
+        gold = gold + _UpdateGoldValue;
+        stats.UpdateStats();
+    }
+
     public void UpdateLevel(float _AdditionalXP) {
          // Add Level
         currentLevel++;
@@ -124,7 +176,8 @@ public class Player_Values : MonoBehaviour
         levelText.text = currentLevel.ToString();
         GameObject.Find("Player").GetComponentInChildren<PlayEffect>().Play();
         // Resend AdditionalXP
-        UpdateXP(_AdditionalXP);
+        AddXp(_AdditionalXP);
+        stats.UpdateStats();
     }
 
     // #### Regeneration ####
@@ -154,11 +207,13 @@ public class Player_Values : MonoBehaviour
         maxLife = maxLife + _UpdateValue;
         // #### Set LifeSlider maxValue ####
         lifeSlider.maxValue = maxLife;
+        stats.UpdateStats();
     }
     public void UpdateManaMaxValue(float _UpdateValue) {
         // #### Update Life MaxValue ####        
         maxMana = maxMana + _UpdateValue;
         // #### Set LifeSlider maxValue ####
         manaSlider.maxValue = maxMana;
+        stats.UpdateStats();
     }
 }

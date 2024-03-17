@@ -7,6 +7,7 @@ public class InventorySwitch : MonoBehaviour
     [Header("========== Inventory ==========")]
     [Header("References")]
     public GameObject g_InventoryPanel;
+    public AudioSource audioSource;
 
     void Update(){
         // Switch to open and close Inventory
@@ -15,9 +16,11 @@ public class InventorySwitch : MonoBehaviour
             if(g_InventoryPanel.activeSelf) {
                 // Close
                 g_InventoryPanel.SetActive(false);
+                audioSource.Play(0);
             }else{
                 // Open
                 g_InventoryPanel.SetActive(true);
+                audioSource.Play(0);
             }
         }
     }

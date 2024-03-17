@@ -17323,7 +17323,7 @@ MonoBehaviour:
   trapPivot: {fileID: 6892838470905657547}
   damageZone: {fileID: 1345762314585034346}
   activationIntervalInSecond: 3
-  trapDamage: 30
+  trapDamage: 5
   upPostion: {x: 0, y: 0.5, z: 0}
   middlePostion: {x: 0, y: 0, z: 0}
   downPosition: {x: 0, y: -1, z: 0}

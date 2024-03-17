@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using UnityEditor;
 
 public class S_PlayerMov : MonoBehaviour
 {
@@ -7,43 +8,35 @@ public class S_PlayerMov : MonoBehaviour
     [Header("#### Settings ####")]
     // public
     public float MovSpeed = 5;
-    public LayerMask layerToHideWhenBehind;
 
     [Header("#### Variables ####")]
-    private Rigidbody rb_Rigidbody;
-    private RaycastHit hitData;
-    public GameObject currentWallToHide;
+    // private
+    private Rigidbody rb;
+    // private bool isWalking;
 
     [Header("#### References ####")]
-    // public
-    public Material transparentWall;
-    public Material Wall;
-    public GameObject ZoneOfWallInfluence;
+    public AudioSource audioSourceFootstep;
 
     void Start(){
         Camera.main.transform.LookAt(transform);
-        rb_Rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate(){
-        rb_Rigidbody.MovePosition(transform.position + new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * Time.deltaTime * MovSpeed);
+        rb.MovePosition(transform.position + new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * Time.deltaTime * MovSpeed);
+        // if(Input.GetAxis("Horizontal") != 0 && !isWalking || Input.GetAxis("Vertical") != 0 && !isWalking){
+        //     isWalking = true;
+        //     StartCoroutine(Footstep());
+        // }else{
+        //     isWalking = false;
+        //     StopCoroutine(Footstep());
+        // }
     }
 
-    // void Update(){
-    //     // Create raycast between camera and player
-    //     if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hitData, 1000, layerToHideWhenBehind)){
-    //         if(hitData.collider.gameObject != currentWallToHide || currentWallToHide == null){
-    //             if(currentWallToHide != null){
-    //                 // Stop Hiding Old currentWallToHide
-    //                 currentWallToHide.GetComponent<Renderer>().material = Wall;
-    //             }
-    //             // Set New currentWallToHide
-    //             currentWallToHide = hitData.collider.gameObject;
-    //             // Hide Wall
-    //             currentWallToHide.GetComponent<Renderer>().material = transparentWall;
-    //         }
-    //     }else if(currentWallToHide != null){
-    //         currentWallToHide.GetComponent<Renderer>().material = Wall;
-    //     }
+    // IEnumerator Footstep(){
+    //     float delay = audioSourceFootstep.clip.length;
+    //     audioSourceFootstep.Play(0);
+    //     yield return new WaitForSeconds(delay);
+    //     isWalking = false;
     // }
 }

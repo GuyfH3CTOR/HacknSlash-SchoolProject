@@ -40,14 +40,25 @@ public class Inventory : MonoBehaviour
         }
     }
 
-
-    public void SpawnInventoryItem(Item item = null){
-        Item _item = item;
+    public void SpawnInventoryItem(){
+        Item _item = null;
         if(_item == null){
             int random = Random.Range(0, items.Count);
             Debug.Log("items count : " + items.Count);
             _item = items[random];
         }
+
+        for(int i = 0; i < inventorySlots.Count; i++){
+            // Check if the slot is empty
+            if(inventorySlots[i].myItem == null){
+                Instantiate(itemPrefab, inventorySlots[i].transform).Initialize(_item, inventorySlots[i]);
+                break;
+            }
+        }
+    }
+
+    public void SpawnInventoryItem(Item item){
+        Item _item = item;
 
         for(int i = 0; i < inventorySlots.Count; i++){
             // Check if the slot is empty
