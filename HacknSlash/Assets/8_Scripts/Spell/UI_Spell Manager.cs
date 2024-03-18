@@ -81,7 +81,7 @@ public class UI_SpellManager : MonoBehaviour
 
     void Update()
     {
-        MouseInput();        
+        MouseInput();
 
         if(isLoading){
             LoadCast();

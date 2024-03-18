@@ -14,16 +14,12 @@ public class Item : ScriptableObject
     [Header("if the equipement can be equipped")]
     public GameObject equipmentPrefab;
 
-    // [SerializeReference] public int ID;
-    // [SerializeReference] public string Name;
-    // [SerializeReference] public Sprite Icon;
-    // [SerializeReference] public string Description = new string("empty");
+    [SerializeReference] public int ID;
+    [SerializeReference] public string Name;
+    [SerializeReference] public Sprite Icon;
+    [SerializeReference] public string Description = new string("empty");
 
-    // public Item(){
-    //     // Empty Item
-    // }
-    // public Item(int id,string name){
-    //     ID = id;
-    //     Name = name;
-    // }
+    public Item(int id){
+        ID = id;
+    }
 }
