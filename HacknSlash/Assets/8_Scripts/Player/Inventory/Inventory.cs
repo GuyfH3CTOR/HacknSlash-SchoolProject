@@ -11,6 +11,9 @@ public class Inventory : MonoBehaviour
     [Header("#### References ####")]
     public GameObject inventoryBag;
     public GameObject slot;
+    public GameObject itemLogs;
+    [Header("Prefab")]
+    public GameObject Log;
     
     public List<InventorySlot> inventorySlots = new List<InventorySlot>();
 
@@ -35,12 +38,20 @@ public class Inventory : MonoBehaviour
     }
 
     public bool AddItem(Item _item){
+        // Debug.Log("AddItem : "+_item.itemName);
+        // Debug.Log("inventorySlots.Count "+inventorySlots.Count);
         for(int i = 0; i < inventorySlots.Count; i++){
-            if(inventorySlots[i].item == null){
+            if(!inventorySlots[i].full){
                 inventorySlots[i].SetSlotItem(_item);
                 items.Add(_item);
                 UpdateStats();
+                ItemLog _itemLog = Instantiate(Log, itemLogs.transform).GetComponent<ItemLog>();
+                // Debug.Log("itemlog ref : "+_itemLog);
+                _itemLog.SetLog(_item);
+                // Debug.Log("AddItem : "+_item.itemName+" To slot number "+i);
                 return true;
+            }else{
+                // Debug.Log("InventorySlot : "+i+" Full");
             }
         }
         return false;
