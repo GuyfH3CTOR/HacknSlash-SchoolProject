@@ -26,7 +26,7 @@ public class Stats : MonoBehaviour
         // Core Stats
         level.text = player_Values.currentLevel.ToString();
         life.text = player_Values.maxLife.ToString();
-        // Armor.text = player_Values.currentLevel.ToString();
+        Armor.text = player_Values.currentArmor.ToString();
         mana.text = player_Values.maxMana.ToString();
         // attackPower.text = player_Values.currentLevel.ToString();
     }

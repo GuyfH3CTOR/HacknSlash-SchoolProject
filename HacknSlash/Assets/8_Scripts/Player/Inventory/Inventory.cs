@@ -58,8 +58,10 @@ public class Inventory : MonoBehaviour
     }
 
     void UpdateStats(){
+        int armorBonus = 0;
         foreach(var item in items){
-
+            armorBonus = armorBonus+item.armor;
         }
+        GameObject.Find("Player").GetComponent<Player_Values>().StatsUpdate(armorBonus);
     }
 }

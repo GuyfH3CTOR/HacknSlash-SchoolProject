@@ -19,6 +19,9 @@ public class Item
     [SerializeReference] public Sprite itemIcon;
     [SerializeReference] public string itemDescription = new string("empty");
 
+    // Stats
+    [SerializeReference] public int armor = 0;
+
     public Item(int id){
         itemID = id;
     }

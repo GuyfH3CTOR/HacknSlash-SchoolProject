@@ -17,6 +17,11 @@ public class Player_Values : MonoBehaviour
     public float maxLife;
     public float currentLife;
     public float lifeRegeneration = 1f;
+    
+    [Header("========== Armor ==========")]
+    [Header("Values")]
+    public float BaseArmor;
+    public float currentArmor;
         
     [Header("========== Mana ==========")]
     [Header("Values")]
@@ -214,6 +219,11 @@ public class Player_Values : MonoBehaviour
         maxMana = maxMana + _UpdateValue;
         // #### Set LifeSlider maxValue ####
         manaSlider.maxValue = maxMana;
+        stats.UpdateStats();
+    }
+
+    public void StatsUpdate(int armorStat){
+        currentArmor = BaseArmor+armorStat;
         stats.UpdateStats();
     }
 }
