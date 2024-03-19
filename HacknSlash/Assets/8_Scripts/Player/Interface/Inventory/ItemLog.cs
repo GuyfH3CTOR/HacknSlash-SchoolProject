@@ -20,13 +20,11 @@ public class ItemLog : MonoBehaviour
     public void SetLog(Item item){
         // Debug.Log("Item Log : 1 "+item.itemName);
         LogText.text = new string("+ 1 "+item.itemName);
+        StartCoroutine(LogDestroyTimer());
     }
 
-    void FixedUpdate(){
-        time = time + Time.deltaTime;
-        if(time >= timeBeforeLogIsGone){
-            // Debug.Log("destroy Log");
-            Destroy(gameObject);
-        }
+    IEnumerator LogDestroyTimer(){
+        yield return new WaitForSeconds(timeBeforeLogIsGone);
+        Destroy(gameObject);
     }
 }
