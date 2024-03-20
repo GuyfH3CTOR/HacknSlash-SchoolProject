@@ -256,7 +256,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5210,11 +5210,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 9094247b477fb8848a93ba2b86c5a7b9, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5351,10 +5351,11 @@ MonoBehaviour:
     manaCost: 0
     spellDamage: 0.1
     loadTime: 0
-    ReloadTime: 0
+    reloadTime: 0
     speed: 0
     zoneSize: 0
     SpellMaxLevel: 0
+  destroyAfterUsingPrefabDelay: 2
   spellAffordances: {fileID: 5729009127466899051}
 --- !u!65 &2705775279961100294
 BoxCollider:

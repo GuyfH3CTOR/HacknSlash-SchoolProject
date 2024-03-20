@@ -28,12 +28,15 @@ public class Spell_Prefab : MonoBehaviour
     // =======================================================================================
 
     public virtual void AtUse(){
+        // Debug.Log("AtUse");
     }
 
     public virtual void InUse(){
+        // Debug.Log("InUse");
     }
 
     public virtual void EndUse(){
+        // Debug.Log("EndUse");
     }
 
     public virtual void OnHit(Entity_Damagable _entity_Damagable){
@@ -44,6 +47,7 @@ public class Spell_Prefab : MonoBehaviour
     // =======================================================================================
 
     public virtual IEnumerator DestroyPrefabDelay(){
+        // Debug.Log("DestroyPrefabDelay");
         yield return new WaitForSeconds(destroyAfterUsingPrefabDelay);
         Destroy(gameObject);
     }

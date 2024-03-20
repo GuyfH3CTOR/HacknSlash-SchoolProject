@@ -4955,7 +4955,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 431bf8a48c7236b469b2c1c90f849a5e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.082
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -10014,7 +10014,7 @@ MonoBehaviour:
     manaCost: 0
     spellDamage: 3
     loadTime: 0
-    ReloadTime: 0
+    reloadTime: 0
     speed: 0
     zoneSize: 0
     SpellMaxLevel: 0
@@ -10115,7 +10115,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 57c8ef07cb3b9fb4f830c1540e51a179, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.258
   m_Pitch: 1
   Loop: 0
   Mute: 0

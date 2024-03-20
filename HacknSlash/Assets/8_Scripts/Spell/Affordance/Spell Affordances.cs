@@ -35,8 +35,7 @@ public class SpellAffordances : MonoBehaviour
 
     public void CallAffordances(AffordancesCall affordancesCall, Action action){
         // CallAffordances the desired Affordance
-        switch(affordancesCall)
-        {
+        switch(affordancesCall){
             case AffordancesCall.atUse:
                 // Debug.Log("CallAffordances : atUse");
                 UseAffordance(atUseAffordances, action);

@@ -15,7 +15,8 @@ public class Spell_Instance
     [SerializeReference] public int manaCost;
     [SerializeReference] public float spellDamage;
     [SerializeReference] public float loadTime;
-    [SerializeReference] public float ReloadTime;
+    [SerializeReference] public float reloadTime;
+    [SerializeReference] public float useTime;
     [SerializeReference] public float speed;
     [SerializeReference] public float zoneSize;
     [SerializeReference] public int SpellMaxLevel = 100; // not on data

@@ -17,9 +17,10 @@ public class Spell : Spell_Instance
         manaCost = int.Parse(spell[5]);
         spellDamage = float.Parse(spell[6]);
         loadTime = float.Parse(spell[7]);
-        ReloadTime = float.Parse(spell[8]);
-        speed = float.Parse(spell[9]);
-        zoneSize = float.Parse(spell[10]);
+        reloadTime = float.Parse(spell[8]);
+        useTime = float.Parse(spell[9]);
+        speed = float.Parse(spell[10]);
+        zoneSize = float.Parse(spell[11]);
     }
     
     void Update()

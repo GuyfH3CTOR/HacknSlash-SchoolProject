@@ -34,6 +34,7 @@ public class PoisonSpray : Spell_Prefab
 
     public override void Intitialization(){
         playerArm = GameObject.Find("Arm");
+        spellAffordances.CallAffordances(AffordancesCall.inUse, Action.start);
         base.Intitialization();
     }
 
@@ -50,6 +51,8 @@ public class PoisonSpray : Spell_Prefab
     }
 
     public override void EndUse(){
+        spellAffordances.CallAffordances(AffordancesCall.inUse, Action.end);
+        StartCoroutine(DestroyPrefabDelay());
         base.EndUse();
     }
 
