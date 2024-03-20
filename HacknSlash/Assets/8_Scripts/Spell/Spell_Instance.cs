@@ -13,7 +13,7 @@ public class Spell_Instance
     [SerializeReference] public GameObject gameobject;
     [SerializeReference] public string castType;
     [SerializeReference] public int manaCost;
-    [SerializeReference] public float damage;
+    [SerializeReference] public float spellDamage;
     [SerializeReference] public float loadTime;
     [SerializeReference] public float ReloadTime;
     [SerializeReference] public float speed;

@@ -5,7 +5,6 @@ using UnityEngine;
 using System;
 
 [Serializable]
-
 public class Spell : Spell_Instance
 {
     public Spell(string[] spell)
@@ -16,7 +15,7 @@ public class Spell : Spell_Instance
         LoadGameObject(spell[3]);
         castType = spell[4];
         manaCost = int.Parse(spell[5]);
-        damage = float.Parse(spell[6]);
+        spellDamage = float.Parse(spell[6]);
         loadTime = float.Parse(spell[7]);
         ReloadTime = float.Parse(spell[8]);
         speed = float.Parse(spell[9]);

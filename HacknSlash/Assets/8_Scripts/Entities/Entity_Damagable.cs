@@ -18,7 +18,9 @@ public class Entity_Damagable : MonoBehaviour
     private float currentLife;
     private float maxLife;
 
-    [Space]
+    [Header("#### Color Settings ####")]
+    private Material baseMaterial;
+    private Color baseColor;
     
     [Header("#### References ####")]
     // Public
@@ -31,6 +33,7 @@ public class Entity_Damagable : MonoBehaviour
     void Start()
     {
         Initialization();
+        SetBaseColorEffect();
     }
 
     public virtual void Initialization()
@@ -67,15 +70,19 @@ public class Entity_Damagable : MonoBehaviour
             return false;
         }
     }
+
+    void SetBaseColorEffect(){
+        baseColor = bodyRenderer.material.color;
+    }
     
     IEnumerator ColorEffect()
     {
-        Material _mat = bodyRenderer.material;
-        Color _color = bodyRenderer.material.color;
-
-        _color = _mat.color;
-        _mat.color = Color.white;
+        // To White
+        bodyRenderer.material.color = Color.white;
+        // Wait
         yield return new WaitForSeconds(0.2f);
-        _mat.color = _color;
+        // To Base Color
+        bodyRenderer.material.color = baseColor;
+        // Debug.Log("return color");
     }
 }

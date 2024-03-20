@@ -1,72 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class PoisonSpray : MonoBehaviour
+public class PoisonSpray : Spell_Prefab
 {
-    [Header("Settings")]
-    // public
-    // private
-    private bool isBeingUsed;
+    // #######################################################################################
 
-    [Header("References")]
-    // public
-    public GameObject playerArm;
-    public AudioSource audioSource;
-    public ParticleSystem particules;
+    // [Header("Settings")]
+    // // public
+    // public Spell spellData;
+    // public float destroyAfterPrefabUseDelay = 2;
+
+    // [Header("References")]
+    // // public
+    // public SpellAffordances spellAffordances;
+
+    // #######################################################################################
+
+    [Header("PoisonSpray : References")]
     // private
-    private List<Entity_Damagable> enemyInCollider = new List<Entity_Damagable>();
+    private GameObject playerArm;
+
+    // =======================================================================================
 
     void Start(){
-        playerArm = GameObject.Find("Arm");
+        Intitialization();
     }
-
-    // ======== Update Side ========
 
     void Update(){
-        FollowPlayerPosition();
-        if(isBeingUsed)Spell();
+        InUse();
     }
 
-    void FollowPlayerPosition(){
+    public override void Intitialization(){
+        playerArm = GameObject.Find("Arm");
+        base.Intitialization();
+    }
+
+    // =======================================================================================
+
+    public override void AtUse(){
+        base.AtUse();
+    }
+
+    public override void InUse(){
         transform.rotation = playerArm.transform.rotation;
         transform.position = playerArm.transform.position;
+        base.InUse();
     }
 
-    void Spell(){
-        
+    public override void EndUse(){
+        base.EndUse();
     }
 
-    void OntriggerStay(Collider[] collider){
-        enemyInCollider.Clear();
-        foreach(Collider c in collider){
-            if(c.gameObject.GetComponent<Entity_Damagable>()){
-                enemyInCollider.Add(c.gameObject.GetComponent<Entity_Damagable>());
-            }
-        }
-    }
-
-    // -------- Stop Update Side --------
-
-    public void UseSpell(){
-        // Activate Spell
-        isBeingUsed = true;
-        // Activate FeedBack
-        SpellFeedBack();
-    }
-
-
-    public void StopSpell(){
-        // Stop Spell
-        isBeingUsed = false;
-        // Destroy Spell after all Feedbacks stopped
-        if(!audioSource.isPlaying && !particules.isPlaying){
-            Destroy(gameObject);
-        }
-    }
-
-    void SpellFeedBack(){
-        particules.Play();
-        audioSource.Play(0);
+    public override void OnHit(Entity_Damagable _entity_Damagable){
+        base.OnHit(_entity_Damagable);
     }
 }

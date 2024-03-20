@@ -4,18 +4,25 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChargingBomb : MonoBehaviour
+public class ChargingBomb : Spell_Prefab
 {
-    [Header("========== Charging Bomb ==========")]
-    
-    [Header("#### Settings ####")]
-    public float ExplosionDamage = 5;
-    [Space]
+    // #######################################################################################
+
+    // [Header("Settings")]
+    // // public
+    // public Spell spellData;
+    // public float destroyAfterPrefabUseDelay = 2;
+
+    // [Header("References")]
+    // // public
+    // public SpellAffordances spellAffordances;
+
+    // #######################################################################################
+
     [Header("#### Countdowns ####")]
     // public
     public float CountUntilHit = 5;
     public float HitEffectDelayToHit = 0;
-    public float destroyGameObjectDelay;
     // private
     private float InUseEffectCountdown;
     [Space]
@@ -26,35 +33,60 @@ public class ChargingBomb : MonoBehaviour
     public PlayEffect playEffectCharge;
     public PlayEffect playEffectExplosion;
 
+    // =======================================================================================
+
     void Start(){
+        Intitialization();
+        AtUse();
+    }
+
+    void Update(){
+        InUse();
+    }
+
+    public override void Intitialization(){
         // Set In Use Effect
         slider.maxValue = CountUntilHit;
         InUseEffectCountdown = CountUntilHit;
         CountUntilHit = CountUntilHit - HitEffectDelayToHit;
         // Wait for explosion
         StartCoroutine(InUseDelay());
+        base.Intitialization();
     }
 
-    void Update(){
-        InUseUpdate();
+    // =======================================================================================
+
+    public override void AtUse(){
+        spellAffordances.CallAffordances(AffordancesCall.atUse,Action.start);
+        base.AtUse();
     }
 
-    void InUseUpdate(){
+    public override void InUse(){
         // Update In Use Effect
         InUseEffectCountdown -= Time.deltaTime;
         slider.value = InUseEffectCountdown;
+        base.InUse();
     }
+
+    public override void EndUse(){
+        base.EndUse();
+    }
+
+    public override void OnHit(Entity_Damagable _entity_Damagable){
+        base.OnHit(_entity_Damagable);
+    }
+
+    // =======================================================================================
 
     IEnumerator InUseDelay(){
         // Debug.Log("CountUntilHit : "+CountUntilHit);
         // Debug.Log("HitEffectDelay : "+HitEffectDelayToHit);
         yield return new WaitForSeconds(CountUntilHit);
-        // play Hit Effect
-        playEffectExplosion.Play();
-        StartCoroutine(HitDelay());
+        spellAffordances.CallAffordances(AffordancesCall.onHit,Action.start);
+        StartCoroutine(OnHitDelay());
     }
 
-    IEnumerator HitDelay(){
+    IEnumerator OnHitDelay(){
         // zoneEffect.SetActive(false);
         yield return new WaitForSeconds(HitEffectDelayToHit);
         // Hide In Use Effect
@@ -62,14 +94,9 @@ public class ChargingBomb : MonoBehaviour
         // Damage Entity_Damagable
         for(int i = 0; i < entitiesDetector.EntitiesDetected.Count; i++){
             if(entitiesDetector.EntitiesDetected[i].GetComponent<Entity_Damagable>() != null){
-                entitiesDetector.EntitiesDetected[i].GetComponent<Entity_Damagable>().UpdateLife(-ExplosionDamage);
+                OnHit(entitiesDetector.EntitiesDetected[i].GetComponent<Entity_Damagable>());
             }
         }
-        StartCoroutine(DestroyDelay());
-    }
-
-    IEnumerator DestroyDelay(){
-        yield return new WaitForSeconds(destroyGameObjectDelay);
-        Destroy(gameObject);
+        StartCoroutine(DestroyPrefabDelay());
     }
 }

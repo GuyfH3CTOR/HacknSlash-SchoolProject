@@ -88,8 +88,8 @@ public class Door : MonoBehaviour
             // Start Slerp
             isInPosition = false;
             // Play sound effect
-            audioSource.clip = openSoundEffect;
-            audioSource.Play();
+            if(openSoundEffect != null)audioSource.clip = openSoundEffect;
+            if(audioSource != null)audioSource.Play();
 
             isOpen = !isOpen;
         }
@@ -109,8 +109,8 @@ public class Door : MonoBehaviour
             // Start Slerp
             isInPosition = false;
             // Play sound effect
-            audioSource.clip = closeSoundEffect;
-            audioSource.Play();
+            if(closeSoundEffect != null)audioSource.clip = closeSoundEffect;
+            if(audioSource != null)audioSource.Play();
             
             isOpen = !isOpen;
         }
@@ -119,8 +119,10 @@ public class Door : MonoBehaviour
     public void SwitchDoorState(){
         if(isOpen){
             CloseDoor();
+            // Debug.Log("close : "+gameObject);
         }else{
             OpenDoor();
+            // Debug.Log("open : "+gameObject);
         }
     }
 }

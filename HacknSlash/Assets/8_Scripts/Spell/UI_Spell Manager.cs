@@ -145,7 +145,7 @@ public class UI_SpellManager : MonoBehaviour
         _manaCost = spellsList[SelectedSpellNumber - 1].manaCost;
 
         _castType = spellsList[SelectedSpellNumber - 1].castType;
-        _damage = spellsList[SelectedSpellNumber - 1].damage;
+        _damage = spellsList[SelectedSpellNumber - 1].spellDamage;
         _loadTime = spellsList[SelectedSpellNumber - 1].loadTime;
         _ReloadTime = spellsList[SelectedSpellNumber - 1].ReloadTime;
         _speed = spellsList[SelectedSpellNumber - 1].speed;
