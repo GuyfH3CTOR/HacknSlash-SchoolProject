@@ -114,6 +114,8 @@ public class Spell_Manager : MonoBehaviour
 
     void StartCast(){
 
+        player_Values.currentMana -= selected_Spell.manaCost;
+
         casted_Spell = Instantiate(selected_Spell.gameobject, playerArm.transform.position, playerArm.transform.rotation, GameObject.Find("ProjectileInGame").transform);
         casted_Spell.GetComponent<Spell_Prefab>().spellData = selected_Spell;
         
